@@ -1,0 +1,57 @@
+﻿#:kivy 1.0.9
+ 
+# Reference squelette_app.py
+#: import main squelette_app
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+
+ProductDB:
+
+<ProductDB>:
+    orientation: "vertical"
+    product_code_text_input: product_code
+    quantity_text_input: quantity
+    reduction_text_input: reduction
+    products_list: products_list_view
+    padding: 10
+    spacing: 10
+ 
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+ 
+        Label:
+            text: "Code Produit"
+        TextInput:
+            id: product_code
+        Label:
+            text: "Quantite"
+        TextInput:
+            id: quantity
+	Label:
+            text: "Reduction"
+        TextInput:
+            id: reduction
+ 
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+        Button:
+            text: "Ajouter"
+            size_hint_x: 15
+            on_press: root.submit_product()
+        Button:
+            text: "Supprimer"
+            size_hint_x: 15
+            on_press: root.delete_product()
+        Button:
+            text: "Remplacer"
+            size_hint_x: 15
+            on_press: root.replace_product()
+ 
+    # Define starting data and point to the ListItemButton
+    # in the Python code
+    ListView:
+        id: products_list_view
+        adapter:
+            ListAdapter(data=["exemple beaucoup"], cls=main.ProductListButton)
